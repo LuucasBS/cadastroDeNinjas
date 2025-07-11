@@ -1,4 +1,4 @@
-package dev.java10x.CadastroDeNinjas.Missoes.Controller.Services;
+package dev.java10x.CadastroDeNinjas.Missoes;
 
 
 import dev.java10x.CadastroDeNinjas.Ninjas.NinjaModel;
