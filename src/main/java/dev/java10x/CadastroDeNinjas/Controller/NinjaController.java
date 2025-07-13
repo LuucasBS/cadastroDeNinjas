@@ -1,22 +1,29 @@
 package dev.java10x.CadastroDeNinjas.Controller;
 
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("")
+@RequestMapping("ninjas")
 public class NinjaController {
 
-    @GetMapping("/boasVindas")
-    public String boasVindas() {
-        return "<h1> boas vindas! </h1>" ;
+    @PostMapping("/criar")
+    public String criar() {
+        return "ninja criada com sucesso" ;
     }
 
-    @PostMapping("/criarNinjas")
-    public String criarNinja(){
-        return "Ninja criado!";
+    @GetMapping("/listar")
+    public String listar(){
+        return "ninja Listada com sucesso" ;
+    }
+
+    @PutMapping("editar")
+    public String editar(){
+        return "ninja editada com sucesso";
+    }
+
+    @DeleteMapping("deletar")
+    public String deletarninja() {
+        return "ninja deletada com sucesso";
     }
 }
