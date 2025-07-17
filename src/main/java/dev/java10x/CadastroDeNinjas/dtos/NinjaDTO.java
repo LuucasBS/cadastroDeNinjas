@@ -1,36 +1,16 @@
-package dev.java10x.CadastroDeNinjas.Ninjas;
+package dev.java10x.CadastroDeNinjas.dtos;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.java10x.CadastroDeNinjas.Missoes.MissoesModel;
-import jakarta.persistence.*;
-import lombok.*;
 
-@Entity
-@Table(name = "tb_Ninjas")
-@Data
-public class NinjaModel {
+public class NinjaDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    Long id;
+   private Long id;
+   private String nome;
+   private String email;
+   private int idade;
 
-    @Column(name = "nome")
-    String nome;
 
-    @Column(name = "email",unique = true)
-    String email;
-
-    @Column(name = "idade")
-    int idade;
-
-    @Column(name = "rank")
-    private String rank;
-
-    @ManyToOne()
-    @JoinColumn(name = "missoes_id")
     private MissoesModel missoes;
-
 
     public Long getId() {
         return id;
@@ -60,8 +40,9 @@ public class NinjaModel {
         return idade;
     }
 
-    public void setIdade(int idade) {
-        this.idade = idade;
+    public int setIdade(int idade) {
+        this.idade = this.idade;
+        return 0;
     }
 
     public MissoesModel getMissoes() {
@@ -72,10 +53,10 @@ public class NinjaModel {
         this.missoes = missoes;
     }
 
-    public NinjaModel() {
+    public NinjaDTO() {
     }
 
-    public NinjaModel(Long id, String nome, String email, int idade, MissoesModel missoes) {
+    public NinjaDTO(Long id, String nome, String email, int idade, MissoesModel missoes) {
         this.id = id;
         this.nome = nome;
         this.email = email;
