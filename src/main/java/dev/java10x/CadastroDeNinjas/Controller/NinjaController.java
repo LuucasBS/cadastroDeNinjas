@@ -1,7 +1,6 @@
 package dev.java10x.CadastroDeNinjas.Controller;
 
 
-import dev.java10x.CadastroDeNinjas.Ninjas.NinjaModel;
 import dev.java10x.CadastroDeNinjas.Ninjas.NinjaService;
 import dev.java10x.CadastroDeNinjas.dtos.NinjaDTO;
 import org.springframework.http.HttpStatus;
@@ -36,11 +35,11 @@ public class NinjaController {
     }
 
     @GetMapping("/listar/{id}")
-    public ResponseEntity<String> listarNinjaByID(@PathVariable Long id) {
+    public ResponseEntity<?> listarNinjaByID(@PathVariable Long id) {
         NinjaDTO ninjasPorId =  ninjaService.listarNinjaPorID(id);
         if( id != null) {
             return ResponseEntity.ok()
-                    .body("Usuario encontrado:" + ninjasPorId);
+                    .body(ninjasPorId);
         } else {
             return  ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body("Ninja com o ID" + id + "Não existe no registro");
@@ -60,8 +59,15 @@ public class NinjaController {
     }
 
     @PutMapping("/alterar/{id}")
-    public NinjaDTO alterarNinjaPorID(@PathVariable Long id,
+    public ResponseEntity<?> alterarNinjaPorID(@PathVariable Long id,
                                     @RequestBody NinjaDTO ninjaAtualizado){
-        return ninjaService.alterarNinja(id, ninjaAtualizado);
+
+        NinjaDTO ninja =  ninjaService.alterarNinja(id, ninjaAtualizado);
+        if (ninja != null) {
+            return ResponseEntity.ok().body(ninja);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Nao encontrado");
+        }
     }
 }
